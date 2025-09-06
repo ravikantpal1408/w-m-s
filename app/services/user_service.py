@@ -1,16 +1,22 @@
-from sqlalchemy.orm import Session
-from app.repositories.user_repository import UserRepository
-from app import schemas
+from sqlalchemy.ext.asyncio import AsyncSession
+from app.repositories.user_repo import UserRepository
+from app.schemas import UserCreate, UserUpdate
 
 class UserService:
-    def __init__(self, db: Session):
-        self.repository = UserRepository(db)
+    def __init__(self, db: AsyncSession):
+        self.repo = UserRepository(db)
 
-    def list_users(self):
-        return self.repository.get_users()
+    async def list(self):
+        return await self.repo.list()
 
-    def get_user_by_id(self, user_id: int):
-        return self.repository.get_user(user_id)
+    async def get(self, user_id: int):
+        return await self.repo.get(user_id)
 
-    def create_user(self, user: schemas.UserCreate):
-        return self.repository.create_user(user)
+    async def create(self, payload: UserCreate):
+        return await self.repo.create(name=payload.name, email=payload.email)
+
+    async def update(self, user_id: int, payload: UserUpdate):
+        return await self.repo.update(user_id, name=payload.name, email=payload.email)
+
+    async def delete(self, user_id: int):
+        return await self.repo.delete(user_id)
