@@ -1,6 +1,7 @@
 /* Bootstrap.com style purple header */
 .navbar-purple {
   background-color: #712cf9 !important; /* Bootstrap.com brand purple */
+  position: relative !important;
 }
 
 .navbar-purple .navbar-brand,
