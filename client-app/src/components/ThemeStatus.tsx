@@ -8,13 +8,8 @@ const ThemeStatus: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
   return (
-    <div
-      className="container mt-5 pt-5"
-      style={{ position: "relative", zIndex: 1 }}
-    >
+    <div className="ms-2 ps-2 mt-1 pt-1">
       <h2>Current Theme: {darkMode ? "Dark 🌙" : "Light ☀️"}</h2>
-
-      {/* Two-way binding with checkbox */}
       <div className="form-check form-switch mt-3">
         <input
           className="form-check-input"

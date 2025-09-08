@@ -1,9 +1,16 @@
 import React, { useEffect } from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import { toggleTheme } from "../store/themeSlice";
-import { Switch, FormControlLabel } from "@mui/material";
+import {
+  Switch,
+  FormControlLabel,
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  Button,
+} from "@mui/material";
 import { LightMode, DarkMode } from "@mui/icons-material";
 
 const Header: React.FC = () => {
@@ -18,21 +25,31 @@ const Header: React.FC = () => {
     }
   }, [darkMode]);
 
-  return (
-    <Navbar
-      expand="lg"
-      className={darkMode ? "navbar-purple" : "navbar-purple"}
-      fixed="top"
-    >
-      <Container>
-        <Navbar.Brand href="#">MyApp</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="#">Home</Nav.Link>
-          <Nav.Link href="#">About</Nav.Link>
-          <Nav.Link href="#">Contact</Nav.Link>
-        </Nav>
+  const drawerWidth = 240;
 
-        {/* Material UI Toggle Switch */}
+  return (
+    <AppBar
+      position="fixed"
+      className={darkMode ? "navbar-purple" : "navbar-purple"}
+      sx={{
+        width: `calc(100% - ${drawerWidth}px)`,
+        ml: `${drawerWidth}px`,
+      }}
+    >
+      <Toolbar>
+        {/* Brand */}
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          MyApp
+        </Typography>
+
+        {/* Nav Links */}
+        <Box sx={{ display: "flex", gap: 2, mr: 3 }}>
+          <Button color="inherit">Home</Button>
+          <Button color="inherit">About</Button>
+          <Button color="inherit">Contact</Button>
+        </Box>
+
+        {/* Dark Mode Toggle */}
         <FormControlLabel
           control={
             <Switch
@@ -43,8 +60,8 @@ const Header: React.FC = () => {
           }
           label={darkMode ? <DarkMode /> : <LightMode />}
         />
-      </Container>
-    </Navbar>
+      </Toolbar>
+    </AppBar>
   );
 };
 

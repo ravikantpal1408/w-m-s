@@ -1,18 +1,15 @@
 import React from "react";
 import Header from "./components/Header";
-import ThemeStatus from "./components/ThemeStatus";
 import LeftNav from "./components/LeftNav";
+import MainContent from "./components/MainContent";
 
 const App: React.FC = () => {
   return (
-    <div>
+    <>
+      <Header />
       <LeftNav />
-      <div>
-        <Header />
-
-        <ThemeStatus />
-      </div>
-    </div>
+      <MainContent />
+    </>
   );
 };
 
