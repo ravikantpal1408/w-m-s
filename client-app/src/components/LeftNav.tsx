@@ -11,6 +11,7 @@ import {
   Divider,
 } from "@mui/material";
 import { Dashboard, People, ShoppingCart, Settings } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -31,18 +32,22 @@ const LeftNav = () => {
     >
       <Toolbar>
         <Typography variant="h6" noWrap component="div">
-          Admin Panel
+          <Link to="/" style={{ textDecoration: "none" }}>
+            Admin Panel
+          </Link>
         </Typography>
       </Toolbar>
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon sx={{ color: "#fff" }}>
-              <Dashboard />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItemButton>
+          <Link to="/map" style={{ textDecoration: "none" }}>
+            <ListItemButton>
+              <ListItemIcon sx={{ color: "#fff" }}>
+                <Dashboard />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+            </ListItemButton>
+          </Link>
         </ListItem>
 
         <ListItem disablePadding>
