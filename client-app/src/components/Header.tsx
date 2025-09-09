@@ -15,15 +15,18 @@ import { LightMode, DarkMode } from "@mui/icons-material";
 
 const Header: React.FC = () => {
   const darkMode = useSelector((state: RootState) => state.theme.darkMode);
+  const user = useSelector((state: RootState) => state.user);
+
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
+    console.log("User Info from header component ℹ️:", user);
     if (darkMode) {
       document.body.classList.add("bg-dark", "text-white");
     } else {
       document.body.classList.remove("bg-dark", "text-white");
     }
-  }, [darkMode]);
+  }, [darkMode, user]);
 
   const drawerWidth = 240;
 
@@ -39,7 +42,7 @@ const Header: React.FC = () => {
       <Toolbar>
         {/* Brand */}
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          MyApp
+          {user.name ? `Welcome, ${user.name}` : "MyApp"}
         </Typography>
 
         {/* Nav Links */}

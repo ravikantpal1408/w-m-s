@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import { setTheme } from "../store/themeSlice";
+import { setUser } from "../store/userSlice";
 
 const ThemeStatus: React.FC = () => {
   const darkMode = useSelector((state: RootState) => state.theme.darkMode);
+  const user = useSelector((state: RootState) => state.user);
   const dispatch: AppDispatch = useDispatch();
-
+  useEffect(() => {
+    if (user) {
+      console.log("User Info ℹ️:", user);
+    }
+  }, [user]);
+  const handleUser = () => {
+    dispatch(setUser({ name: "Ravi Kant Pal", email: "ravi@test.com" }));
+  };
   return (
     <div className="ms-2 ps-2 mt-1 pt-1">
       <h2>Current Theme: {darkMode ? "Dark 🌙" : "Light ☀️"}</h2>
@@ -21,6 +30,9 @@ const ThemeStatus: React.FC = () => {
           Toggle Theme (Two-Way Binding)
         </label>
       </div>
+      <button className="btn btn-primary mt-3" onClick={handleUser}>
+        Log User Info
+      </button>
     </div>
   );
 };
