@@ -2,6 +2,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python Debugger: FastAPI",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "app.main:app",
+                "--reload"
+            ],
+            "jinja": true,
+            // "postDebugTask": "Open FastAPI in Browser",
+            "preLaunchTask": "Open FastAPI in Browser"
+        },
+        {
             "name": "Debug React App (Chrome)",
             "type": "chrome",
             "request": "launch",
@@ -11,7 +24,8 @@
             "runtimeArgs": [
                 "--remote-debugging-port=9222"
             ],
-            "port": 9222
+            "port": 9222,
+            "preLaunchTask": "Open react-app"
         }
     ]
 }
