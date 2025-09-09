@@ -1,21 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import { setTheme } from "../store/themeSlice";
-import { setUser } from "../store/userSlice";
+import { fetchUser_ } from "../store/userSlice";
 
 const ThemeStatus: React.FC = () => {
   const darkMode = useSelector((state: RootState) => state.theme.darkMode);
-  const user = useSelector((state: RootState) => state.user);
+  const { user, loading, error } = useSelector(
+    (state: RootState) => state.user
+  );
   const dispatch: AppDispatch = useDispatch();
-  useEffect(() => {
-    if (user) {
-      console.log("User Info ℹ️:", user);
-    }
-  }, [user]);
-  const handleUser = () => {
-    dispatch(setUser({ name: "Ravi Kant Pal", email: "ravi@test.com" }));
+
+  if (loading) return <p>Loading user...</p>;
+
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+
+  const handleUser = async () => {
+    await dispatch(fetchUser_());
   };
+
   return (
     <div className="ms-2 ps-2 mt-1 pt-1">
       <h2>Current Theme: {darkMode ? "Dark 🌙" : "Light ☀️"}</h2>
@@ -33,6 +36,14 @@ const ThemeStatus: React.FC = () => {
       <button className="btn btn-primary mt-3" onClick={handleUser}>
         Log User Info
       </button>
+      {user && (
+        <div className="mt-3">
+          <h4>User Details</h4>
+          <p>ID: {user[0].id}</p>
+          <p>Name: {user[0].name}</p>
+          <p>Email: {user[0].email}</p>
+        </div>
+      )}
     </div>
   );
 };

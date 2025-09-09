@@ -15,12 +15,11 @@ import { LightMode, DarkMode } from "@mui/icons-material";
 
 const Header: React.FC = () => {
   const darkMode = useSelector((state: RootState) => state.theme.darkMode);
-  const user = useSelector((state: RootState) => state.user);
+  const { user } = useSelector((state: RootState) => state.user);
 
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    console.log("User Info from header component ℹ️:", user);
     if (darkMode) {
       document.body.classList.add("bg-dark", "text-white");
     } else {
@@ -40,9 +39,9 @@ const Header: React.FC = () => {
       }}
     >
       <Toolbar>
-        {/* Brand */}
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          {user.name ? `Welcome, ${user.name}` : "MyApp"}
+          {user && user.length > 0 ? `Welcome, ${user[0].name}` : "MyApp"}
+          {/* {user.length > 0 ? `Welcome, ${user[0].name}` : "MyApp"} */}
         </Typography>
 
         {/* Nav Links */}
