@@ -7,7 +7,8 @@ app = FastAPI(title="FastAPI Repo Pattern (Async)", lifespan=lifespan_context)
 # ✅ Configure allowed origins
 origins = [
     "http://localhost:3000",  # React dev server
-    "http://127.0.0.1:3000",  # Sometimes React runs on 127.0.0.1
+    "http://127.0.0.1:3000",
+    "http://192.168.1.2:3000"  # Sometimes React runs on 127.0.0.1
     # You can add production domains here later
 ]
 
