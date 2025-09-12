@@ -14,5 +14,6 @@ module.exports = {
   testMatch: [
     "<rootDir>/tests/**/*.(test|spec).[jt]s?(x)",
     "<rootDir>/src/**/*.(test|spec).[jt]s?(x)",
+    "<rootDir>/tests/components/**/*.(test|spec).[jt]s?(x)",
   ],
 };
