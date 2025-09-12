@@ -1,16 +1,19 @@
 import React from "react";
-import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import App from "../src/App";
+import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import App from "../src/App";
 import { store } from "../src/store/store";
 
-test("renders learn react link", () => {
+test("renders app without crashing", () => {
   render(
     <Provider store={store}>
-      <App />
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
     </Provider>
   );
-  const linkElement = screen.getByText(/MyApp/i);
-  expect(linkElement).toBeInTheDocument();
+
+  // Check something that should always be there
+  expect(screen.getByText(/Dashboard/i)).toBeInTheDocument();
 });
