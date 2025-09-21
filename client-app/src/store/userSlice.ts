@@ -20,8 +20,11 @@ export const fetchUser_ = createAsyncThunk<User[]>(
     try {
       const data = await UserService.fetchUser();
       return data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );
