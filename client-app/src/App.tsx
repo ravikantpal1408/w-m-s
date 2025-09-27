@@ -10,7 +10,6 @@ const App: React.FC = () => {
     <>
         <Header />
         <LeftNav />
-
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/map" element={<MapComponent />} />

@@ -1,12 +1,13 @@
+from typing import Any, Coroutine, Sequence
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, update, delete
+from sqlalchemy import select, update, delete, Row, RowMapping
 from app.models import User
 
 class UserRepository:
     def __init__(self, db: AsyncSession):
         self.db = db
 
-    async def list(self) -> list[User]:
+    async def list(self) -> Sequence[User]:
         res = await self.db.execute(select(User).order_by(User.id))
         return res.scalars().all()
 
