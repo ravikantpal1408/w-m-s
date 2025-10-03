@@ -10,12 +10,12 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { Dashboard, People, ShoppingCart, Settings } from "@mui/icons-material";
+import { Dashboard, ShoppingCart, Settings } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
-const LeftNav = () => {
+const LeftNav: React.FC = () => {
   return (
     <Drawer
       variant="permanent"
@@ -51,12 +51,14 @@ const LeftNav = () => {
         </ListItem>
 
         <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon sx={{ color: "#fff" }}>
-              <People />
-            </ListItemIcon>
-            <ListItemText primary="Users" />
-          </ListItemButton>
+          <Link to="/register-plant" style={{ textDecoration: "none" }}>
+            <ListItemButton>
+              <ListItemIcon sx={{ color: "#fff" }}>
+                <Dashboard />
+              </ListItemIcon>
+              <ListItemText primary="Plant Registration" />
+            </ListItemButton>
+          </Link>
         </ListItem>
 
         <ListItem disablePadding>
