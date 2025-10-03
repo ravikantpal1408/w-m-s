@@ -14,7 +14,10 @@ import {
 import { LightMode, DarkMode } from "@mui/icons-material";
 
 const Header: React.FC = () => {
-  const darkMode = useSelector((state: RootState) => state.theme.darkMode);
+  const darkMode = useSelector(
+    (state: RootState & { theme: { darkMode: boolean } }) =>
+      state.theme.darkMode
+  );
   const { user } = useSelector((state: RootState) => state.user);
 
   const dispatch: AppDispatch = useDispatch();
@@ -40,7 +43,9 @@ const Header: React.FC = () => {
     >
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          {user && user.length > 0 ? `Welcome, ${user[0].name}` : "MyApp"}
+          {user && user.length > 0
+            ? `Welcome, ${user[0].name}`
+            : "Waste Management System"}
           {/* {user.length > 0 ? `Welcome, ${user[0].name}` : "MyApp"} */}
         </Typography>
 
