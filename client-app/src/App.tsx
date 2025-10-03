@@ -9,10 +9,8 @@ import PlantRegistration from "./components/treatment-plants/PlantRegistration";
 const App: React.FC = () => {
   return (
     <>
-      <Header />
-      <LeftNav />
-
-      <div style={{ marginLeft: 240, padding: 10, marginTop: 0 }}>
+        <Header />
+        <LeftNav />
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/map" element={<MapComponent />} />
